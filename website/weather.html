@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="JS/weather.js" defer></script>
+    <title>Weather page</title>
+  </head>
+  <body onload="upload()">
+    <select id="ct" class="Select-Type" name="Type" onchange="upload()">
+      <option value="Kyiv">Kyiv</option>
+      <option value="Toronto">Toronto</option>
+      <option value="London">London</option>
+    </select>
+    <div id='wthr'>
+
+    </div>
+  </body>
+</html>

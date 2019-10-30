@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="CSS/style2.css">
+    <title>Main page</title>
+  </head>
+<body vlink="#FFFFF0" link="#4CAF50" alink="#FF4500">
+<div class="hat">
+  <a  href="mainpage.html">Electric cars</a>
+
+  <!-- Button to open the modal login form -->
+  <button onclick="document.getElementById('id01').style.display='block'" id="loginbtn" class="loginbtn" >Login</button>
+  <button id="logoutbtn">Log out</button>
+  <!-- The Modal -->
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'"
+  class="close" title="Close Modal">&times;</span>
+
+    <!-- Modal Content -->
+    <form class="modal-content animate">
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="login" name="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="password" name="psw" required>
+
+        <button type="submit" id="check">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <script src="JS/login.js"></script>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot password?</span>
+      </div>
+      <div class="container">
+        <button type="button" onclick="document.location='registrationpage.html'" name="button">Registrate</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<div id="sortline1" class="sortline">
+  <label for="ct">Car type:</label>
+  <select id="ct" class="Select-Type" name="Type">
+    <option value="All">All</option>
+    <option value="Coup">Coup</option>
+    <option value="Sedan">Sedan</option>
+  </select>
+  <label for="cm">Car model:</label>
+  <select id="cm" class="Select-Model" name="Model">
+    <option value="All">All</option>
+    <option value="Tesla">Tesla</option>
+    <option value="BMW">BMW</option>
+    <option value="Audi">Audi</option>
+    <option value="Rimac">Rimac</option>
+  </select>
+  <form class="searchlane" align="top">
+    <input type="search" name="srch" placeholder="Search" align="right">
+    <input type="button" value="GO" >
+  </form>
+</div>
+</div>
+<div class="Cars">
+  <table class="tableforcars" text-align:"center">
+    <tr>
+      <td><img src="/home/dima/Загрузки/modelx.jpg" width="290px" height="150px" alt="Teala Model X">
+      <a href="/home/dima/Рабочий стол/website/basicpage.html"><p align="center">Tesla Model X</p></a></td>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">BMW i3</p></td>
+      <td><img src="/home/dima/Загрузки/car.jpg"  width="290px" height="150px">
+      <p align="center">BMW i7</p></td>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">Tesla Model S</p></td>
+    </tr>
+    <tr>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">Tesla Model 3</p></td>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">Tesla Semi</p></td>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">Rimac Concept 1</p></td>
+      <td><img src="/home/dima/Загрузки/car.jpg" width="290px" height="150px">
+      <p align="center">Audi A3</p></td>
+    </tr>
+  </table>
+</div>
+<div id="title">
+   <img src="/home/dima/Загрузки/car.jpg" width="640" height="300" alt="Навигация по сайту"
+    usemap="#Navigation"></div>
+   <p><map id="Navigation" name="Navigation">
+    <area shape="poly" coords="113,24,211,24,233,0,137,0" href="basicpage.html" alt="Информация">
+    <area shape="poly" coords="210,24,233,0,329,0,307,24" href="lab2.html" alt="Мероприятия">
+    <area shape="poly" coords="304,24,385,24,407,0,329,0" href="registrationpage.html" alt="Отделения">
+   </map></p>
+  <ul>
+    <li>First point</li>
+    <li>Second point</li>
+    <li>Third point</li>
+  </ul>
+<div class="downlane">
+  Hello it's not useful
+</div>
+  <script src="JS/login.js"></script>
+  </body>
+</html>
