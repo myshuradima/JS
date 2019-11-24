@@ -1,5 +1,5 @@
 <?php
   session_start();
   unset($_SESSION['logedin']);
-  header('Location:/my%20site/registrationpage.php');
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
  ?>

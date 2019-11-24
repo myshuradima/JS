@@ -8,13 +8,16 @@
   $mysql = new mysqli('localhost','root','','users-bd');
   $result = $mysql->query("SELECT * FROM `users` WHERE `username` = '$username' AND `password`='$password'");
   $user = $result->fetch_assoc();
-  if(count($user) == 0){
-    echo "No such users";
+  session_start();
+  if($user == 0){
+    setcookie('wronguser', 0, time()+1);
+    setcookie('username2', $username, time()+5);
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
   }
-  session_start();
+  //session_start();
   $_SESSION['logedin']=$username;
 
   $mysql->close();
-  header('Location:/my%20site/registrationpage.php');
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
  ?>

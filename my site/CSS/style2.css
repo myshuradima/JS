@@ -362,3 +362,18 @@ h3{
   opacity: 0.9;
   float : right;
 }
+.forallcoments{
+  padding: 14px 20px;
+  margin: 8px 20px;
+  background-color: #4CAF50;
+}
+.Comments{
+  background-color: #008B8B;
+  width:auto;
+  max-width: 3000px;
+  height: 60px;
+  font-size: 15pt;
+  font-style: italic;
+  font-weight: bold;
+  border: solid 2px #000080;
+}
