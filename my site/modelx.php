@@ -17,9 +17,40 @@
         <?php else: ?>
           <button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>
         <?php endif; ?>
+        <?php if (isset($_SESSION['admin'])):?>
+          <button onclick="document.getElementById('id03').style.display='block'" class="loginbtn" >My admin</button>
+        <?php endif; ?>
         <!-- Button to open the modal login form -->
         <!--<button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>-->
         <!-- The Modal -->
+        <?php if(isset($_COOKIE['registred'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this name is already exists</div>');
+              }
+              if(isset($_COOKIE['wronguser'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong username or password</div>');
+              }
+              if(isset($_COOKIE['exemail'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this email is already exists</div>');
+              }
+              if(isset($_COOKIE['wasregistred'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">You were registred</div>');
+              }
+              if(isset($_COOKIE['userinvalid'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong symbols in your username' . '</div>');
+              }
+              if(isset($_COOKIE['emailinvalid'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Very strange email' .'</div>');
+              }
+              if(isset($_COOKIE['passwordilinvalid'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You hadnt repeat the password' .'</div>');
+              }
+              if(isset($_COOKIE['ban'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You are banned' .'</div>');
+              }
+              if(isset($_COOKIE['coment'])){
+                echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">You will not see your coment' .'</div>');
+              }
+        ?>
         <div id="id01" class="modal">
           <span onclick="document.getElementById('id01').style.display='none'"
         class="close" title="Close Modal">&times;</span>
@@ -58,7 +89,23 @@
               <p>Your username is <?php echo $_SESSION['logedin'] ?></p>
             </div>
           </form>
+
         </div>
+
+        <div id="id03" class="modal">
+          <span onclick="document.getElementById('id03').style.display='none'"
+        class="close" title="Close Modal">&times;</span>
+
+          <!-- Modal Content -->
+            <div class="container">
+              <button onclick="document.location='checkcoments.php'" class="signupbtn" >New comments</button></br>
+              <button onclick="document.location='banedusers.php'" class="signupbtn" >Baned users</button></br>
+              <button onclick="document.location='newadmin.php'" class="signupbtn" >New admin</button></br>
+              <button onclick="document.location='addcar.php'" class="signupbtn" >New car</button></br>
+            </div>
+
+        </div>
+
 
       </div>
 
@@ -76,7 +123,7 @@
       <form name=coment action="comment.php" method="post" id="commentform">
         <label for="Comentline" <?php if (!isset($_SESSION['logedin'])) {
           echo 'style="background-color:red; font-size:15pt">You cant coment without sing in';}
-          else{echo 'style="background-color:green; font-size:15pt">Comments';}?></label> <br />
+          else{echo 'style="background-color:green; font-size:15pt">Comments';}?> </label> <br />
         <textarea name="Comentline" rows="8" cols="80" <?php if (!isset($_SESSION['logedin'])) {
           echo "placeholder='Helloworld' disabled";}?>> </textarea> <br />
         <input type="hidden" name="user" value="<?php if (isset($_SESSION['logedin'])){echo $_SESSION['logedin'];} ?>">
@@ -86,7 +133,7 @@
       </form>
       <div class="allcoments">
         <?php $mysql = new mysqli('localhost','root','','users-bd');
-        $result = $mysql->query("SELECT * FROM `comments` WHERE `page_id`= '$page_id' ORDER BY `date` DESC");
+        $result = $mysql->query("SELECT * FROM `comments` WHERE `page_id`= '$page_id' AND `checked` = '1' ORDER BY `date` DESC");
         while($row = $result->fetch_assoc()){
           //print_r($row);
           echo '<div class style="background-color: #4CAF50; margin: 8px 20px; ">';

@@ -11,5 +11,6 @@
   echo $name;
   echo $text;
   echo $date;
+  setcookie('coment', 0, time()+5);
   header('Location: ' . $_SERVER['HTTP_REFERER']);
  ?>
