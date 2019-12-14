@@ -15,9 +15,23 @@
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
   }
+  if($user['admin']==1){
+    $_SESSION['admin']=True;
+  }
+  if($user['ban']==1){
+    $date1 = $user['ban-date'];
+    $date2 = date("Y") . "-" . date("m") . "-" . date("d");
+    if(strcasecmp($date1, $date2)<=0){
+      $mysql->query("UPDATE `users` SET `ban` = '0' ");
+    }
+    else {
+      setcookie('ban', $user['ban-date'], time()+1);
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+      exit();
+    }
+  }
   //session_start();
   $_SESSION['logedin']=$username;
-
   $mysql->close();
   header('Location: ' . $_SERVER['HTTP_REFERER']);
  ?>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/style2.css">
-    <script src="JS/upload.js" defer></script>
+    <script src="JS/newupload.js" defer></script>
     <title>Main page</title>
   </head>
 <body vlink="#FFFFF0" link="#ffffff" alink="#FF4500" onload="upload()">
@@ -16,6 +16,9 @@
     <button onclick="document.getElementById('id02').style.display='block'" class="loginbtn" >My form</button>
   <?php else: ?>
     <button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>
+  <?php endif; ?>
+  <?php if (isset($_SESSION['admin'])):?>
+    <button onclick="document.getElementById('id03').style.display='block'" class="loginbtn" >My admin</button>
   <?php endif; ?>
   <!-- Button to open the modal login form -->
   <!--<button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>-->
@@ -58,7 +61,25 @@
         <p>Your username is <?php echo $_SESSION['logedin'] ?></p>
       </div>
     </form>
+
   </div>
+
+  <div id="id03" class="modal">
+    <span onclick="document.getElementById('id03').style.display='none'"
+  class="close" title="Close Modal">&times;</span>
+
+    <!-- Modal Content -->
+    <form class="modal-content animate">
+      <div class="container">
+        <button onclick="document.getElementById('id03').style.display='block'" class="signupbtn" >New comments</button></br>
+        <button onclick="document.getElementById('id03').style.display='block'" class="signupbtn" >Baned users</button></br>
+        <button onclick="document.getElementById('id03').style.display='block'" class="signupbtn" >New admin</button></br>
+      </div>
+    </form>
+
+  </div>
+
+
 </div>
 <!--Line which responsible for search and filter options-->
 <div class="controls">
@@ -112,6 +133,31 @@
     <input onclick="showall()" type="button" id="Showallbutton" value="Show all" >
   </form>
 </div>
+<?php if(isset($_COOKIE['registred'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this name is already exists</div>');
+      }
+      if(isset($_COOKIE['wronguser'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong username or password</div>');
+      }
+      if(isset($_COOKIE['exemail'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this email is already exists</div>');
+      }
+      if(isset($_COOKIE['wasregistred'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">You were registred</div>');
+      }
+      if(isset($_COOKIE['userinvalid'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong symbols in your username' . '</div>');
+      }
+      if(isset($_COOKIE['emailinvalid'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Very strange email' .'</div>');
+      }
+      if(isset($_COOKIE['passwordilinvalid'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You hadnt repeat the password' .'</div>');
+      }
+      if(isset($_COOKIE['ban'])){
+        echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You are banned till ' . $_COOKIE['ban'] . '</div>');
+      }
+?>
 <!-- Flexbox with links for pages with cars-->
 <div id="cars" class="Cars"><div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div></div>
 <div class="downlane">

@@ -50,7 +50,9 @@ if($validaton==0){
   $mypassword=md5($password."hdgreffg3443");
  //$mysql = new mysqli('localhost','root','','users-bd');
    $mysql->query("INSERT INTO `users` (`username`, `password`, `e-mail`) VALUES('$username', '$mypassword', '$email') ");
+   $_SESSION['logedin']=$username;
    $mysql->close();
    setcookie('wasregistred', 0, time()+2);
+
    header('Location: ' . $_SERVER['HTTP_REFERER']);
  ?>

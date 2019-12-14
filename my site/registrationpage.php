@@ -60,7 +60,7 @@
         <!-- Modal Content -->
         <form class="modal-content animate">
           <div class="container">
-            <p>Hello world</p>
+            <p>Your username is <?php echo $_SESSION['logedin'] ;?></p>
           </div>
         </form>
       </div>
@@ -88,6 +88,9 @@
           }
           if(isset($_COOKIE['passwordilinvalid'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You hadnt repeat the password' .'</div>');
+          }
+          if(isset($_COOKIE['ban'])){
+            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You are banned' .'</div>');
           }
     ?>
   <div class="containerreg" action=index.php>
