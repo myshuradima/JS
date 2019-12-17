@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="CSS/style2.css">
-    <script src="JS/banedusers1000.js" defer></script>
+    <script src="JS/newadmins.js" defer></script>
     <title>Main page</title>
   </head>
 <body vlink="#FFFFF0" link="#ffffff" alink="#FF4500" onload="filter()">
@@ -139,8 +139,8 @@
     <div class="sortline">
       <label for="bt">Users:</label>
       <select id="bt" class="Select-Type" name="Type" onchange="filter()">
-        <option value="0">Not Banned</option>
-        <option value="1">Banned</option>
+        <option value="0">Users</option>
+        <option value="1">Admins</option>
       </select></br></br>
     <form class="searchlane" onsubmit="return false">
       <input type="search"  onkeydown="if(event.keyCode == 13){search()}" id="Searchline" name="srch" placeholder="Search" align="right">

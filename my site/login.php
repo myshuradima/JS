@@ -1,7 +1,7 @@
 <?php
   $username=filter_var(trim($_POST['uname']), FILTER_SANITIZE_STRING);
   $password=filter_var(trim($_POST['loginpsw']), FILTER_SANITIZE_STRING);
-
+  $remember=$_POST['remember'];
 
   $password=md5($password."hdgreffg3443");
 
@@ -12,7 +12,8 @@
   if($user == 0){
     setcookie('wronguser', 0, time()+1);
     setcookie('username2', $username, time()+5);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    echo $remember;
+    //header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
   }
   if($user['admin']==1){

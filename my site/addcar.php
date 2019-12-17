@@ -9,13 +9,12 @@
   <body>
     <body vlink="#FFFFF0" link="#4CAF50" alink="#FF4500">
       <div class="hat">
-        <?php $page_id = 1; ?>
         <?php session_start(); ?>
         <a  href="lab2.php">Electric cars</a>
         <?php if (isset($_SESSION['logedin'])):?>
           <button onclick="location.href='exit.php'" class="loginbtn" >Logout</button>
           <button onclick="document.getElementById('id02').style.display='block'" class="loginbtn" >My form</button>
-        <?php else: ?>
+        <?php else: header('Location: ' . 'lab2.php');?>
           <button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>
         <?php endif; ?>
         <?php if (isset($_SESSION['admin'])):?>
@@ -93,7 +92,7 @@
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this email is already exists</div>');
           }
           if(isset($_COOKIE['wasadded'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">You were registred</div>');
+            echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">Car was added</div>');
           }
           if(isset($_COOKIE['userinvalid'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong symbols in your username' . '</div>');
@@ -111,10 +110,10 @@
     <hr>
 
     <label for="carname"><b>Car name</b></label>
-    <input type="text" placeholder="Enter username" name="carname" id="registrationusername" <?php if(isset($_COOKIE['username1'])){echo  "value=" . $_COOKIE['username1'];} else{echo '';} ?>  required>
+    <input type="text" placeholder="Enter car name" name="carname" id="registrationusername" <?php if(isset($_COOKIE['username1'])){echo  "value=" . $_COOKIE['username1'];} else{echo '';} ?>  required>
 
     <label for="linktoimage"><b>link to image</b></label>
-    <input type="text" placeholder="Enter Email" name="linktoimage" id="registrationemail" <?php if(isset($_COOKIE['email1'])){echo  "value=" . $_COOKIE['email1'];} else{echo '';} ?> required>
+    <input type="text" placeholder="Enter link to image" name="linktoimage" id="registrationemail" <?php if(isset($_COOKIE['email1'])){echo  "value=" . $_COOKIE['email1'];} else{echo '';} ?> required>
 
     <label for="linktopage"><b>Link to page of this car</b></label>
     <input type="text" placeholder="Repeat Password" name="linktopage" id="registrationrepeatpassword" <?php if(isset($_COOKIE['reppassword'])){echo  "value=" . $_COOKIE['reppassword'];} else{echo '';} ?> required>

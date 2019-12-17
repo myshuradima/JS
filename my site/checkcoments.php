@@ -16,7 +16,7 @@
         <?php if (isset($_SESSION['logedin'])):?>
           <button onclick="location.href='exit.php'" class="loginbtn" >Logout</button>
           <button onclick="document.getElementById('id02').style.display='block'" class="loginbtn" >My form</button>
-        <?php else: ?>
+        <?php else: header('Location: ' . 'lab2.php');?>
           <button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>
         <?php endif; ?>
         <?php if (isset($_SESSION['admin'])):?>
@@ -51,7 +51,7 @@
               }
         ?>
 
-        
+
         <div id="id01" class="modal">
           <span onclick="document.getElementById('id01').style.display='none'"
         class="close" title="Close Modal">&times;</span>
@@ -123,9 +123,11 @@
       echo "</form></div>";
       $k=$k+1;
       }
+      echo '<div style="background-color : #4CAF50; font-size : 15 pt;">';
       echo "Username:" . $row['name'] . "<br />";
       echo "Date:" . $row['date'] . "<br />";
       echo $row['text'];
+      echo '</div>';
       echo '<div style="background-color: #4CAF50;"><form action = "checkedcoments.php" method="post">' .
       '<input type="hidden" name="page_id" value="'. $row['id'] .'">' . '<input type="hidden" name="what_to_do" value= 0"' .'">' .
       '<button type="submit" style="background-color: blue;" onclick="document.getElementById("pathselect").value = 0" class="signupbtn">Checked</button>' . "</form></div>";
@@ -135,6 +137,7 @@
       echo '<div style="background-color: #4CAF50; "><form action = "checkedcoments.php" method="post">' .
       '<input type="hidden" name="page_id" value="'. $row['id'] .'">' . '<input type="hidden" name="what_to_do" value= 2"' . '">' .
       '<button type="submit" style="background-color: black;" onclick="document.getElementById("pathselect").value = 2" class="signupbtn">Delete and ban</button>' . "</form></div>";
+      echo "<br />";
     }
     if($k==0){echo "Any new comments";}
     $mysql->close();

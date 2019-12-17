@@ -1,6 +1,8 @@
 var linkstocars;
 var out;
+var k=0;
 function upload(){
+k=k+8;
 document.getElementById('ct').disabled = true;
 document.getElementById('cm').disabled = true;
 document.getElementById('Searchbutton').disabled = true;
@@ -17,7 +19,7 @@ xmlhttp.onreadystatechange = function() {
         document.getElementById('cars').innerHTML = this.responseText;
     }
 };
-xmlhttp.open("GET","JS/upload.php",true);
+xmlhttp.open("GET","JS/upload.php?k="+k,true);
 xmlhttp.send();
 //document.getElementById('Allfilter').style.background="black";
 document.getElementById('ct').disabled = false;

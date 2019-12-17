@@ -23,31 +23,7 @@
     <!-- Button to open the modal login form -->
     <!--<button onclick="document.getElementById('id01').style.display='block'" class="loginbtn" >Login</button>-->
     <!-- The Modal -->
-    <?php if(isset($_COOKIE['registred'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this name is already exists</div>');
-          }
-          if(isset($_COOKIE['wronguser'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong username or password</div>');
-          }
-          if(isset($_COOKIE['exemail'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this email is already exists</div>');
-          }
-          if(isset($_COOKIE['wasregistred'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">You were registred</div>');
-          }
-          if(isset($_COOKIE['userinvalid'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong symbols in your username' . '</div>');
-          }
-          if(isset($_COOKIE['emailinvalid'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Very strange email' .'</div>');
-          }
-          if(isset($_COOKIE['passwordilinvalid'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You hadnt repeat the password' .'</div>');
-          }
-          if(isset($_COOKIE['ban'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You are banned' .'</div>');
-          }
-    ?>
+
     <div id="id01" class="modal">
       <span onclick="document.getElementById('id01').style.display='none'"
     class="close" title="Close Modal">&times;</span>
@@ -63,7 +39,7 @@
 
           <button type="submit">Login</button>
           <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" checked="checked" value="0" name="remember"> Remember me
           </label>
         </div>
 
@@ -183,7 +159,7 @@
       }
 ?>
 <!-- Flexbox with links for pages with cars-->
-<div id="cars" class="Cars"><div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div></div>
+<div id="cars" class="Cars"><div id="p_prldr"><div class="contpre"></div></div></div>
 <div class="downlane">
   Contacts 2019
 </div>
