@@ -32,14 +32,15 @@
       <form class="modal-content animate" action="login.php" method="post">
         <div class="container">
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="uname" required>
+          <input type="text" placeholder="Enter Username" name="uname" <?php if(isset($_COOKIE['remember'])){echo 'value='.$_COOKIE['remember'];} ?> required>
 
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="loginpsw" required>
 
           <button type="submit">Login</button>
           <label>
-            <input type="checkbox" checked="checked" value="0" name="remember"> Remember me
+            <input type="hidden" checked="checked" value="0" name="remember">
+            <input type="checkbox" checked="checked" value="1" name="remember"> Remember me
           </label>
         </div>
 

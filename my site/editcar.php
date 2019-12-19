@@ -1,3 +1,10 @@
+<?php
+  $id =  $_GET['id'];
+  $mysql = new mysqli('localhost','root','','cars-db');
+  $result = $mysql->query("SELECT * FROM `cars` WHERE `id` = '$id'");
+  $car = $result->fetch_assoc();
+  $linktotext = substr($car['link'],0,-4) . ".txt";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -83,7 +90,7 @@
 <!--Form for registration-->
 
 
-  <form action="add.php"   id="registrationform"  margin="20px 0" method="post">
+  <form action="edit.php"   id="registrationform"  margin="20px 0" method="post">
     <?php
           if(isset($_COOKIE['wronguser'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong username or password</div>');
@@ -91,8 +98,8 @@
           if(isset($_COOKIE['exemail'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Users with this email is already exists</div>');
           }
-          if(isset($_COOKIE['wasadded'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">Car was added</div>');
+          if(isset($_COOKIE['waschanged'])){
+            echo('<div align="center"  style="font-size:20pt; background-color:green; margin: 8px 2px">Car was changed</div>');
           }
           if(isset($_COOKIE['userinvalid'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Wrong symbols in your username' . '</div>');
@@ -100,8 +107,8 @@
           if(isset($_COOKIE['emailinvalid'])){
             echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">Very strange email' .'</div>');
           }
-          if(isset($_COOKIE['linkerror'])){
-            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">This link is already exists' .'</div>');
+          if(isset($_COOKIE['passwordilinvalid'])){
+            echo('<div align="center"  style="font-size:20pt; background-color:red; margin: 8px 2px">You hadnt repeat the password' .'</div>');
           }
     ?>
   <div class="containerreg" action=index.php>
@@ -110,42 +117,44 @@
     <hr>
 
     <label for="carname"><b>Car name</b></label>
-    <input type="text" placeholder="Enter car name" name="carname" id="registrationusername" <?php if(isset($_COOKIE['carname'])){echo  "value=" . $_COOKIE['carname'];} else{echo '';} ?>  required>
+    <input type="text" placeholder="Enter car name" name="carname"  id="registrationusername" <?php echo  'value="' . $car['name'] . '"'; ?> required>
 
     <label for="linktoimage"><b>link to image</b></label>
-    <input type="text" placeholder="Enter link to main image" name="linktoimage" id="registrationemail" <?php if(isset($_COOKIE['linktoimage'])){echo  "value=" . $_COOKIE['linktoimage'];} else{echo '';} ?> required>
+    <input type="text" placeholder="Enter link to main image" name="linktoimage" id="registrationemail" <?php echo  "value=" . $car['image']; ?> required>
 
-    <label for="linktopage"><b>Name of the page</b></label>
-    <input type="text" placeholder="Input the name of the page wihtout any dots" name="linktopage" id="registrationrepeatpassword" <?php if(isset($_COOKIE['linktopage'])){echo  "value=" . $_COOKIE['linktopage'];} else{echo '';} ?> pattern="^[A-Za-z0-9]+$" required>
+    <input type="hidden" placeholder="Input the name of the page wihtout any dots" name="linktopage" id="registrationrepeatpassword" <?php echo  "value=" . $car['link']; ?> required>
+
+    <input type="hidden" placeholder="Input the name of the page wihtout any dots" name="id" id="registrationrepeatpassword" <?php echo  "value=" . $car['id']; ?>  required>
+
 
     <label for="ct">Car type:</label>
     <select id="ct" class="Select-Type" name="Type" onchange="filter()">
-      <option value="Hatchback">Hatchback</option>
-      <option value="Sedan">Sedan</option>
-      <option value="MPV">MPV</option>
-      <option value="SUV">SUV</option>
-      <option value="Crossover">Crossover</option>
-      <option value="Coupe">Coupe</option>
-      <option value="Convertible">Convertible</option>
+      <option <?php if($car['type']=="Hatchback"){echo "selected";} ?> value="Hatchback" >Hatchback</option>
+      <option <?php if($car['type']=="Sedan"){echo "selected";} ?> value="Sedan">Sedan</option>
+      <option <?php if($car['type']=="MPV"){echo "selected";} ?> value="MPV">MPV</option>
+      <option <?php if($car['type']=="SUV"){echo "selected";} ?> value="SUV">SUV</option>
+      <option <?php if($car['type']=="Crossover"){echo "selected";} ?> value="Crossover">Crossover</option>
+      <option <?php if($car['type']=="Coupe"){echo "selected";} ?> value="Coupe">Coupe</option>
+      <option <?php if($car['type']=="Convertible"){echo "selected";} ?> value="Convertible">Convertible</option>
     </select>
     <label for="cm">Car model:</label>
     <select id="cm" class="Select-Model" name="Model" onchange="filter()">
-      <option value="Tesla">Tesla</option>
-      <option value="BMW">BMW</option>
-      <option value="Audi">Audi</option>
-      <option value="Nissan">Nissan</option>
-      <option value="Jaguar">Jaguar</option>
-      <option value="Mercedes">Mercedes</option>
+      <option <?php if($car['model']=="Tesla"){echo "selected";} ?> value="Tesla">Tesla</option>
+      <option <?php if($car['model']=="BMW"){echo "selected";} ?> value="BMW">BMW</option>
+      <option <?php if($car['model']=="Audi"){echo "selected";} ?> value="Audi">Audi</option>
+      <option <?php if($car['model']=="Nissan"){echo "selected";} ?> value="Nissan">Nissan</option>
+      <option <?php if($car['model']=="Jaguar"){echo "selected";} ?> value="Jaguar">Jaguar</option>
+      <option <?php if($car['model']=="Mercedes"){echo "selected";} ?> value="Mercedes">Mercedes</option>
     </select></br>
 
     <br><label for="textonpage"><b>Text on the page</b></label></br>
-    <textarea style="width:100%" rows="25" cols="50" placeholder="Text that will be on page" name="textonpage" id="textonpage" <?php if(isset($_COOKIE['textonpage'])){echo  "value=" . $_COOKIE['textonpage'];} else{echo '';} ?> required></textarea>
+    <textarea style="width:100%" rows="25" cols="50" placeholder="Text that will be on page" name="textonpage" id="textonpage"  required><?php echo file_get_contents($linktotext); ?></textarea>
 
 
     <!--Button for sending data to server-->
     <div class="clearfix">
       <!--<button type="button" class="cancelbtn">Cancel</button>-->
-      <button type="submit" class="signupbtn" id="registrationcheck">Add</button>
+      <button type="submit" class="signupbtn" id="registrationcheck">Edit</button>
     </div>
   </div>
 </form>

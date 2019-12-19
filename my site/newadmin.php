@@ -8,7 +8,6 @@
   </head>
 <body vlink="#FFFFF0" link="#ffffff" alink="#FF4500" onload="filter()">
   <div class="hat">
-    <?php $page_id = 1; ?>
     <?php session_start(); ?>
     <a  href="lab2.php">Electric cars</a>
     <?php if (isset($_SESSION['logedin'])):?>
